@@ -10,10 +10,9 @@ def make_qr_code(data):
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=50,
-        border=3,
+        border=2,
     )
     qr.add_data(data)
-    # qr.make(fit=True)
 
     img = qr.make_image(fill_color="black", back_color="white")
     return img
@@ -34,7 +33,6 @@ def overlay_label(qr_image, label, template, col, row):
 
     font = ImageFont.truetype("arial.ttf", 10)
     draw.text((col_offset, row_offset-20), label[:40], font=font, fill=(0, 0, 0))
-    template.save('qr_label.png')
 
 
 def create_template():
@@ -68,7 +66,8 @@ if __name__ == '__main__':
         qr_img = make_qr_code(datum)
         overlay_label(qr_img, datum, template, col, row)
         col += 1
-        
+    template.save('qr_label.pdf')
+    
 
 
 
