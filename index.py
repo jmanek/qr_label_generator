@@ -23,7 +23,6 @@ def make_qr_code(data):
 
 def overlay_label(qr_image, qr, label, template, rect):
     width, height = template.size
-    print(rect)
     qr_image = qr_image.resize((rect[2]-10, rect[3]-10))
 
     template.paste(qr_image, (rect[0] + 5, rect[1] + 5))
@@ -31,6 +30,7 @@ def overlay_label(qr_image, qr, label, template, rect):
     font = ImageFont.truetype("arial.ttf", 42)
     ImageDraw.Draw(template).text((rect[0], rect[1]-20),
                                   label[:40], font=font, fill=(0, 0, 0))
+    print(label)
     print_qr_code(qr)
 
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     parser.add_argument('start', type=int,
                         help='The square to start adding labels -- zero indexed')
     parser.add_argument('data', nargs='+',
-                        help='space separate list of links to convert into QR codes')
+                        help='spaced separate list of links to convert into QR codes')
     args = parser.parse_args()
 
     start = args.start
