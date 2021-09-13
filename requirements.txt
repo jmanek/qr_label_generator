@@ -1,3 +1,5 @@
 qrcode[pil]
 pdf2image
 Pillow
+numpy
+opencv-python
